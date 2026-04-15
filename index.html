@@ -379,12 +379,55 @@
   .back-link:hover {
     color: var(--gold);
   }
+
+  /* Controls Wrapper */
+  .controls-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
   /* Filter Tabs */
   .filter-tabs {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-bottom: 2.5rem;
+  }
+
+  .sort-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .sort-control label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .sort-control select {
+    background-color: var(--filter-tab-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 0.45rem 2.5rem 0.45rem 1.3rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23F5D9A8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.8rem center;
+    background-size: 1em;
+  }
+  html[data-theme='light'] .sort-control select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235a3e2b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   }
 
   .filter-tab {
@@ -821,6 +864,33 @@
     }
     footer { padding: 2.5rem 1.5rem; }
     .footer-top { flex-direction: column; }
+    .events-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .event-card .card-img {
+      height: 120px;
+    }
+    .event-card .card-body {
+      padding: 1rem;
+    }
+    .event-card .card-title {
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+    .event-card .card-location {
+      font-size: 0.7rem;
+      margin-bottom: 0.75rem;
+    }
+    .event-card .card-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .event-card .btn-tickets {
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+    }
   }
 </style>
 <style>
@@ -898,18 +968,18 @@
     <p class="hero-sub">From township jazz to bush raves, city concerts to heritage festivals — FestiZA connects you with every live experience South Africa has to offer.</p>
 
     <div class="search-bar">
-      <input type="text" placeholder="Search events, artists, venues…">
+      <input type="text" id="hero-search-input" placeholder="Search events, artists, venues…">
       <button>Discover <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 1.1em; height: 1.1em; vertical-align: -0.2em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
     </div>
 
     <div class="hero-tags">
-      <span class="tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Music</span>
-      <span class="tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l2.3 2.3"/><path d="M14 4 2 16"/><path d="m22 16-2.3-2.3a3 3 0 0 0-4.2 0L13.2 16"/><path d="M4 14 16 2"/></svg> Food & Drink</span>
-      <span class="tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 12c0-2.8.9-5.3 2.4-7.3"/><path d="M22 12c0-2.8-.9-5.3-2.4-7.3"/><path d="M12 2a5 5 0 0 0-5 5v2h10V7a5 5 0 0 0-5-5Z"/><path d="M12 12a5 5 0 0 1 5 5v2H7v-2a5 5 0 0 1 5-5Z"/></svg> Arts</span>
-      <span class="tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 15h16"/><path d="M10 3v18"/><path d="M14 3v18"/><path d="M8 21h8"/></svg> Sports</span>
-      <span class="tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Heritage</span>
-      <span class="tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Family</span>
-      <span class="tag"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-7 0V15a5 5 0 0 1 5-5Z"/><path d="M4.5 16.5a3.5 3.5 0 0 0 7 0V15a5 5 0 0 0-5-5Z"/></svg> Wildlife</span>
+      <span class="tag" data-cat="music"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Music</span>
+      <span class="tag" data-cat="food"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l2.3 2.3"/><path d="M14 4 2 16"/><path d="m22 16-2.3-2.3a3 3 0 0 0-4.2 0L13.2 16"/><path d="M4 14 16 2"/></svg> Food & Drink</span>
+      <span class="tag" data-cat="arts"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 12c0-2.8.9-5.3 2.4-7.3"/><path d="M22 12c0-2.8-.9-5.3-2.4-7.3"/><path d="M12 2a5 5 0 0 0-5 5v2h10V7a5 5 0 0 0-5-5Z"/><path d="M12 12a5 5 0 0 1 5 5v2H7v-2a5 5 0 0 1 5-5Z"/></svg> Arts</span>
+      <span class="tag" data-cat="sports"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 15h16"/><path d="M10 3v18"/><path d="M14 3v18"/><path d="M8 21h8"/></svg> Sports</span>
+      <span class="tag" data-cat="heritage"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg> Heritage</span>
+      <span class="tag" data-cat="family"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Family</span>
+      <span class="tag" data-cat="wildlife"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-7 0V15a5 5 0 0 1 5-5Z"/><path d="M4.5 16.5a3.5 3.5 0 0 0 7 0V15a5 5 0 0 0-5-5Z"/></svg> Wildlife</span>
     </div>
   </div>
 
@@ -939,33 +1009,100 @@
   </div> <!-- End Featured Strip -->
 
   <!-- Filter Tabs -->
-  <div class="filter-tabs">
-    <button class="filter-tab active" data-cat="all">All Events</button>
-    <button class="filter-tab" data-cat="music"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Music</button>
-    <button class="filter-tab" data-cat="food"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l2.3 2.3"/><path d="M14 4 2 16"/><path d="m22 16-2.3-2.3a3 3 0 0 0-4.2 0L13.2 16"/><path d="M4 14 16 2"/></svg> Food & Drink</button>
-    <button class="filter-tab" data-cat="arts"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 12c0-2.8.9-5.3 2.4-7.3"/><path d="M22 12c0-2.8-.9-5.3-2.4-7.3"/><path d="M12 2a5 5 0 0 0-5 5v2h10V7a5 5 0 0 0-5-5Z"/><path d="M12 12a5 5 0 0 1 5 5v2H7v-2a5 5 0 0 1 5-5Z"/></svg> Arts & Culture</button>
-    <button class="filter-tab" data-cat="sports"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 15h16"/><path d="M10 3v18"/><path d="M14 3v18"/><path d="M8 21h8"/></svg> Sports</button>
-    <button class="filter-tab" data-cat="family"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Family</button>
+  <div class="controls-wrapper">
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-cat="all">All Events</button>
+      <button class="filter-tab" data-cat="music"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> Music</button>
+      <button class="filter-tab" data-cat="food"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l2.3 2.3"/><path d="M14 4 2 16"/><path d="m22 16-2.3-2.3a3 3 0 0 0-4.2 0L13.2 16"/><path d="M4 14 16 2"/></svg> Food & Drink</button>
+      <button class="filter-tab" data-cat="arts"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M2 12c0-2.8.9-5.3 2.4-7.3"/><path d="M22 12c0-2.8-.9-5.3-2.4-7.3"/><path d="M12 2a5 5 0 0 0-5 5v2h10V7a5 5 0 0 0-5-5Z"/><path d="M12 12a5 5 0 0 1 5 5v2H7v-2a5 5 0 0 1 5-5Z"/></svg> Arts & Culture</button>
+      <button class="filter-tab" data-cat="sports"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 15h16"/><path d="M10 3v18"/><path d="M14 3v18"/><path d="M8 21h8"/></svg> Sports</button>
+      <button class="filter-tab" data-cat="family"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Family</button>
+    </div>
+    <div class="sort-control">
+      <label for="sort-events">Sort By:</label>
+      <select id="sort-events" name="sort-events">
+        <option value="default">Relevance</option>
+        <option value="date-asc">Date (Soonest)</option>
+      </select>
+    </div>
   </div>
 
   <!-- Events Grid -->
   <div class="events-grid" id="eventsGrid">
 
-    <div class="event-card" data-cat="music" data-city="cape-town">
-      <img class="card-img" src="images\rocking the daises pic.png" alt="Rocking the Daisies Festival">
-      <div class="card-badge">This Weekend</div>
+    <!-- START: Cape Town Events (April - October 2026) -->
+    <div class="event-card" data-cat="music" data-city="cape-town" data-date="2026-06-27">
+      <img class="card-img" src="images/cape-town-jazz-2026.jpg" alt="Cape Town International Jazz Festival">
+      <div class="card-badge">June 2026</div>
       <div class="card-body">
-        <div class="card-meta"><span>Music</span><span>Rock / Indie</span></div>
-        <div class="card-title">ROCKING the DAISIES</div>
-        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Cloof Wine Estate, Darling</div>
+        <div class="card-meta"><span>Music</span><span>Jazz</span></div>
+        <div class="card-title">Cape Town Int. Jazz Festival</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> CTICC, Cape Town</div>
         <div class="card-footer">
-          <div class="card-price">R1 200 <small>General Admission</small></div>
-          <a href="https://www.rockingthedaisies.com" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <div class="card-price">From R950 <small>Day Pass</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
 
-    <div class="event-card" data-cat="music" data-city="johannesburg">
+    <div class="event-card" data-cat="music" data-city="cape-town" data-date="2026-10-09">
+      <img class="card-img" src="images/rocking-the-daisies-2026.jpg" alt="Rocking the Daisies Festival">
+      <div class="card-badge">October 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Music</span><span>Multi-Genre</span></div>
+        <div class="card-title">Rocking the Daisies</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> DHL Stadium, Cape Town</div>
+        <div class="card-footer">
+          <div class="card-price">From R1295 <small>Phase 1</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="sports" data-city="cape-town" data-date="2026-10-18">
+      <img class="card-img" src="images/cape-town-marathon-2026.jpg" alt="Sanlam Cape Town Marathon">
+      <div class="card-badge">October 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Sports</span><span>Running</span></div>
+        <div class="card-title">Sanlam Cape Town Marathon</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Green Point, Cape Town</div>
+        <div class="card-footer">
+          <div class="card-price">From R450 <small>Entry</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Enter <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="family" data-city="cape-town" data-date="2026-09-25">
+      <img class="card-img" src="images/hermanus-whale-fest-2026.jpg" alt="Hermanus Whale Festival">
+      <div class="card-badge">Sept 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Family</span><span>Wildlife</span></div>
+        <div class="card-title">Hermanus Whale Festival</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Hermanus, Western Cape</div>
+        <div class="card-footer">
+          <div class="card-price">Free <small>Entry</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Details <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="arts" data-city="cape-town" data-date="2999-01-01">
+      <img class="card-img" src="images/first-thursdays-ct-2026.jpg" alt="First Thursdays Cape Town">
+      <div class="card-badge">Monthly</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Arts & Culture</span><span>Social</span></div>
+        <div class="card-title">First Thursdays Cape Town</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> CBD & East City, Cape Town</div>
+        <div class="card-footer">
+          <div class="card-price">Free <small>Galleries</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Explore <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <!-- END: Cape Town Events -->
+
+    <div class="event-card" data-cat="music" data-city="johannesburg" data-date="2026-06-13">
       <img class="card-img" src="images\cape town jazz festival.jpg" alt="Business Premium Jazz Festival">
       <div class="card-badge">June</div>
       <div class="card-body">
@@ -979,7 +1116,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="food" data-city="stellenbosch">
+    <div class="event-card" data-cat="food" data-city="stellenbosch" data-date="2999-01-02">
       <img class="card-img" src="images\cape winelands.jpg" alt="Agulhas Wine Triangle Harvest Festival 2026">
       <div class="card-badge">Monthly</div>
       <div class="card-body">
@@ -993,7 +1130,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="arts" data-city="makhanda">
+    <div class="event-card" data-cat="arts" data-city="makhanda" data-date="2026-07-02">
       <img class="card-img" src="images/national arts festival.jpg" alt="National Arts Festival">
       <div class="card-badge">July</div>
       <div class="card-body">
@@ -1007,7 +1144,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="sports" data-city="port-elizabeth">
+    <div class="event-card" data-cat="sports" data-city="port-elizabeth" data-date="2026-06-20">
       <img class="card-img" src="images/siya kolisi vs wales.jpg" alt="Springboks Home Series">
       <div class="card-badge">From June 20</div>
       <div class="card-body">
@@ -1021,7 +1158,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="food" data-city="johannesburg">
+    <div class="event-card" data-cat="food" data-city="johannesburg" data-date="2026-09-05">
       <img class="card-img" src="images\event pics\soweto food and music.png" alt="Soweto Kota Festival">
       <div class="card-badge">5 & 6 September</div>
       <div class="card-body">
@@ -1035,7 +1172,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="sports" data-city="johannesburg">
+    <div class="event-card" data-cat="sports" data-city="johannesburg" data-date="2026-05-25">
       <img class="card-img" src="images/durban.jpg" alt="Jozi Urban Run">
       <div class="card-badge">25 May</div>
       <div class="card-body">
@@ -1049,7 +1186,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="arts" data-city="johannesburg">
+    <div class="event-card" data-cat="arts" data-city="johannesburg" data-date="2999-01-03">
       <img class="card-img" src="images/pretoria.jpg" alt="The Market Theatre Showcase">
       <div class="card-badge">Weekly</div>
       <div class="card-body">
@@ -1063,7 +1200,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="music" data-city="johannesburg">
+    <div class="event-card" data-cat="music" data-city="johannesburg" data-date="2026-04-17">
       <img class="card-img" src="images\manana mending broken hearts.png" alt="Manana Mending Broken Hearts Tour">
       <div class="card-badge">17 April</div>
       <div class="card-body">
@@ -1077,7 +1214,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="music" data-city="johannesburg">
+    <div class="event-card" data-cat="music" data-city="johannesburg" data-date="2999-01-04">
       <img class="card-img" src="images/durban.jpg" alt="Amapiano Sunsets">
       <div class="card-badge">Every Sunday</div>
       <div class="card-body">
@@ -1091,7 +1228,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="food" data-city="johannesburg">
+    <div class="event-card" data-cat="food" data-city="johannesburg" data-date="2999-01-05">
       <img class="card-img" src="images/stellies.jpg" alt="The Linden Market">
       <div class="card-badge">Quarterly</div>
       <div class="card-body">
@@ -1105,7 +1242,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="arts" data-city="johannesburg">
+    <div class="event-card" data-cat="arts" data-city="johannesburg" data-date="2999-01-06">
       <img class="card-img" src="images/pretoria.jpg" alt="First Thursdays Johannesburg">
       <div class="card-badge">First Thursday</div>
       <div class="card-body">
@@ -1119,7 +1256,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="sports" data-city="johannesburg">
+    <div class="event-card" data-cat="sports" data-city="johannesburg" data-date="2026-11-09">
       <img class="card-img" src="images/siya kolisi vs wales.jpg" alt="Soweto Derby">
       <div class="card-badge">9 Nov</div>
       <div class="card-body">
@@ -1133,7 +1270,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="family" data-city="johannesburg">
+    <div class="event-card" data-cat="family" data-city="johannesburg" data-date="2026-06-19">
       <img class="card-img" src="images/knysna.jpg" alt="Disney on Ice">
       <div class="card-badge">June-July</div>
       <div class="card-body">
@@ -1147,7 +1284,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="music" data-city="johannesburg">
+    <div class="event-card" data-cat="music" data-city="johannesburg" data-date="2999-01-07">
       <img class="card-img" src="images/rocking the daises pic.png" alt="Park Acoustics JHB">
       <div class="card-badge">Monthly</div>
       <div class="card-body">
@@ -1161,7 +1298,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="food" data-city="johannesburg">
+    <div class="event-card" data-cat="food" data-city="johannesburg" data-date="2999-01-08">
       <img class="card-img" src="images/cape winelands.jpg" alt="Neighbourgoods Market">
       <div class="card-badge">Every Saturday</div>
       <div class="card-body">
@@ -1175,7 +1312,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="arts" data-city="johannesburg">
+    <div class="event-card" data-cat="arts" data-city="johannesburg" data-date="2999-01-09">
       <img class="card-img" src="images/national arts festival.jpg" alt="Wits Art Museum Exhibition">
       <div class="card-badge">Ongoing</div>
       <div class="card-body">
@@ -1189,7 +1326,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="sports" data-city="johannesburg">
+    <div class="event-card" data-cat="sports" data-city="johannesburg" data-date="2026-11-15">
       <img class="card-img" src="images/bloem.jpg" alt="947 Ride Joburg">
       <div class="card-badge">November</div>
       <div class="card-body">
@@ -1203,7 +1340,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="music" data-city="johannesburg">
+    <div class="event-card" data-cat="music" data-city="johannesburg" data-date="2027-03-05">
       <img class="card-img" src="images/rocking the daises pic.png" alt="Ultra South Africa">
       <div class="card-badge">March</div>
       <div class="card-body">
@@ -1213,6 +1350,147 @@
         <div class="card-footer">
           <div class="card-price">R995 <small>Tier 1</small></div>
           <a href="https://ultrasouthafrica.com/" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- START: 10 New Events -->
+    <div class="event-card" data-cat="food" data-city="durban" data-date="2026-07-18">
+      <img class="card-img" src="images/durban-food-fest.jpg" alt="Durban Street Food Festival">
+      <div class="card-badge">July 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Food & Drink</span><span>Market</span></div>
+        <div class="card-title">Durban Street Food Festival</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> The Pavilion, Durban</div>
+        <div class="card-footer">
+          <div class="card-price">R80 <small>Entry</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="arts" data-city="pretoria" data-date="2026-08-01">
+      <img class="card-img" src="images/pretoria-art-walk.jpg" alt="Pretoria Art-in-the-Park">
+      <div class="card-badge">August 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Arts & Culture</span><span>Exhibition</span></div>
+        <div class="card-title">Pretoria Art-in-the-Park</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Austin Roberts Park, Pretoria</div>
+        <div class="card-footer">
+          <div class="card-price">Free <small>Admission</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Details <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="family" data-city="knysna" data-date="2026-07-03">
+      <img class="card-img" src="images/knysna-oyster-fest.jpg" alt="Knysna Oyster Festival">
+      <div class="card-badge">July 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Family</span><span>Food & Drink</span></div>
+        <div class="card-title">Knysna Oyster Festival</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Knysna Waterfront, Knysna</div>
+        <div class="card-footer">
+          <div class="card-price">Varies <small>Per Event</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="sports" data-city="bloemfontein" data-date="2026-05-30">
+      <img class="card-img" src="images/cheetahs-rugby.jpg" alt="Cheetahs vs Lions Rugby">
+      <div class="card-badge">May 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Sports</span><span>Rugby</span></div>
+        <div class="card-title">Currie Cup: Cheetahs vs Lions</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Free State Stadium, Bloemfontein</div>
+        <div class="card-footer">
+          <div class="card-price">R150 <small>Main Stand</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="music" data-city="stellenbosch" data-date="2026-04-25">
+      <img class="card-img" src="images/stellenbosch-unplugged.jpg" alt="Stellenbosch Unplugged">
+      <div class="card-badge">April 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Music</span><span>Acoustic</span></div>
+        <div class="card-title">Stellenbosch Unplugged</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Spier Wine Farm, Stellenbosch</div>
+        <div class="card-footer">
+          <div class="card-price">R250 <small>Lawn Seating</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="food" data-city="port-elizabeth" data-date="2026-09-12">
+      <img class="card-img" src="images/pe-seafood-fest.jpg" alt="PE Seafood & Wine Festival">
+      <div class="card-badge">Sept 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Food & Drink</span><span>Wine</span></div>
+        <div class="card-title">PE Seafood & Wine Festival</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> The Boardwalk, Port Elizabeth</div>
+        <div class="card-footer">
+          <div class="card-price">R180 <small>Incl. Glass</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="music" data-city="durban" data-date="2026-12-31">
+      <img class="card-img" src="images/durban-nye.jpg" alt="Durban New Year's Eve">
+      <div class="card-badge">31 Dec</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Music</span><span>Party</span></div>
+        <div class="card-title">Fact Durban Rocks NYE</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Moses Mabhida Stadium, Durban</div>
+        <div class="card-footer">
+          <div class="card-price">R350 <small>Early Bird</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="arts" data-city="bloemfontein" data-date="2026-10-02">
+      <img class="card-img" src="images/macufe.jpg" alt="Macufe Festival">
+      <div class="card-badge">October 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Arts & Culture</span><span>Music</span></div>
+        <div class="card-title">Macufe Festival</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Various Venues, Bloemfontein</div>
+        <div class="card-footer">
+          <div class="card-price">Varies <small>Per Event</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="sports" data-city="durban" data-date="2026-07-04">
+      <img class="card-img" src="images/durban-july.jpg" alt="Hollywoodbets Durban July">
+      <div class="card-badge">July 2026</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Sports</span><span>Horse Racing</span></div>
+        <div class="card-title">Hollywoodbets Durban July</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Greyville Racecourse, Durban</div>
+        <div class="card-footer">
+          <div class="card-price">R230 <small>General</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="music" data-city="pretoria" data-date="2999-02-01">
+      <img class="card-img" src="images/park-acoustics-pta.jpg" alt="Park Acoustics Pretoria">
+      <div class="card-badge">Monthly</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Music</span><span>Indie / Folk</span></div>
+        <div class="card-title">Park Acoustics Pretoria</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Voortrekker Monument, Pretoria</div>
+        <div class="card-footer">
+          <div class="card-price">R200 <small>Pre-sale</small></div>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
@@ -1354,46 +1632,71 @@
   const eventsGrid = document.getElementById('eventsGrid');
   const allEventCards = document.querySelectorAll('.event-card');
   const backToAllLink = document.getElementById('backToAllCities');
+  const sortSelect = document.getElementById('sort-events');
+  const searchInput = document.getElementById('hero-search-input');
 
   function updateEventView() {
     const city = new URLSearchParams(window.location.search).get('city');
     const activeCategoryButton = document.querySelector('.filter-tab.active');
     const category = activeCategoryButton ? activeCategoryButton.dataset.cat : 'all';
+    const sortValue = sortSelect.value;
+    const searchTerm = searchInput.value.trim().toLowerCase();
 
     // Update UI based on whether a city is selected
     const sectionTitle = document.querySelector('#events .section-title');
     if (city) {
-        document.querySelector('.featured-strip')?.style.setProperty('display', 'none');
-        backToAllLink?.style.setProperty('display', ''); // Show back link
-        const cityName = city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        if (sectionTitle) {
-            sectionTitle.innerHTML = `Events in <em>${cityName}</em>`;
-        }
+      document.querySelector('.featured-strip')?.style.setProperty('display', 'none');
+      backToAllLink?.style.setProperty('display', ''); // Show back link
+      const cityName = city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      if (sectionTitle) {
+        sectionTitle.innerHTML = `Events in <em>${cityName}</em>`;
+      }
     } else { // No city selected, reset to default view
-        document.querySelector('.featured-strip')?.style.setProperty('display', '');
-        backToAllLink?.style.setProperty('display', 'none'); // Hide back link
-        if (originalEventsTitle && sectionTitle) {
-            sectionTitle.innerHTML = originalEventsTitle;
-        }
+      document.querySelector('.featured-strip')?.style.setProperty('display', '');
+      backToAllLink?.style.setProperty('display', 'none'); // Hide back link
+      if (originalEventsTitle && sectionTitle) {
+        sectionTitle.innerHTML = originalEventsTitle;
+      }
     }
 
     // Filter cards
-    let eventCount = 0;
-    allEventCards.forEach(card => {
-        const isCityMatch = !city || card.dataset.city === city;
-        const isCategoryMatch = category === 'all' || card.dataset.cat === category;
+    let matchingCards = Array.from(allEventCards).filter(card => {
+      const isCityMatch = !city || card.dataset.city === city;
+      const isCategoryMatch = category === 'all' || card.dataset.cat === category;
 
-        if (isCityMatch && isCategoryMatch) {
-            card.style.display = '';
-            eventCount++;
-        } else {
-            card.style.display = 'none';
-        }
+      // Search logic
+      const cardText = card.textContent.toLowerCase();
+      const isSearchMatch = !searchTerm || cardText.includes(searchTerm);
+
+      return isCityMatch && isCategoryMatch && isSearchMatch;
     });
 
+    // Sort the filtered cards
+    if (sortValue === 'date-asc') {
+      matchingCards.sort((a, b) => {
+        const dateA = new Date(a.dataset.date);
+        const dateB = new Date(b.dataset.date);
+        const isARecurring = a.dataset.date.startsWith('2999');
+        const isBRecurring = b.dataset.date.startsWith('2999');
+
+        if (isARecurring && !isBRecurring) return 1;
+        if (!isARecurring && isBRecurring) return -1;
+        
+        return dateA - dateB;
+      });
+    }
+
+    // Update the DOM
+    allEventCards.forEach(card => card.style.display = 'none');
     // Handle "no events" message
     eventsGrid?.querySelector('.no-events-message')?.remove();
-    if (eventCount === 0 && eventsGrid) {
+
+    if (matchingCards.length > 0) {
+      matchingCards.forEach(card => {
+        eventsGrid.appendChild(card);
+        card.style.display = '';
+      });
+    } else if (eventsGrid) {
         const cityText = city ? ` in ${city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}` : '';
         const categoryText = category !== 'all' ? ` for this category` : '';
         eventsGrid.insertAdjacentHTML('beforeend', `<p class="no-events-message" style="color: var(--ash); text-align: center; grid-column: 1 / -1;">No events found${categoryText}${cityText}.</p>`);
@@ -1402,6 +1705,39 @@
 
   // --- Event Listeners ---
   
+  // Search Bar
+  const searchButton = document.querySelector('.search-bar button');
+
+  function handleSearch(e) {
+    e.preventDefault();
+    updateEventView();
+    // Only scroll if there was a search term or it was a click/enter event
+    if (searchInput.value.trim() || e.type === 'click') {
+      document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  searchButton.addEventListener('click', handleSearch);
+  searchInput.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  });
+  // Live search as user types
+  searchInput.addEventListener('input', updateEventView);
+
+  // Hero Tags
+  document.querySelectorAll('.hero-tags .tag[data-cat]').forEach(tag => {
+    tag.addEventListener('click', () => {
+      const category = tag.dataset.cat;
+      const filterTab = document.querySelector(`.filter-tab[data-cat="${category}"]`);
+      if (filterTab) {
+        filterTab.click(); // This will trigger the filter's own event listener
+        document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
   // Category filter clicks
   document.querySelectorAll('.filter-tab').forEach(button => {
     button.addEventListener('click', () => {
@@ -1410,6 +1746,9 @@
         updateEventView();
     });
   });
+
+  // Sort dropdown change
+  sortSelect?.addEventListener('change', updateEventView);
   
   // City card clicks
   document.querySelectorAll('a.city-card[href*="?city="]').forEach(link => {
