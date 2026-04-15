@@ -124,7 +124,16 @@
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: color 0.2s;
+    transition: color 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+
+  .nav-cta {
+    -webkit-tap-highlight-color: transparent; /* Remove default mobile tap highlight */
+  }
+
+  .nav-cta:active {
+    transform: scale(1.03); /* Mimic hover effect on tap */
+    box-shadow: 0 4px 20px rgba(232,69,10,0.5);
   }
 
   /* ─── HERO ─── */
@@ -509,10 +518,16 @@
     text-decoration: none;
     display: inline-block;
     transition: transform 0.15s, box-shadow 0.2s;
+    -webkit-tap-highlight-color: transparent; /* Remove default mobile tap highlight */
   }
 
   .btn-tickets:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(200,57,43,0.5);
+  }
+
+  .btn-tickets:active {
+    transform: scale(1.05); /* Mimic hover effect on tap */
     box-shadow: 0 6px 20px rgba(200,57,43,0.5);
   }
 
@@ -798,6 +813,12 @@
     .featured-info { max-width: none; }
     .featured-details { justify-content: center; }
     .featured-title { font-size: 1.6rem; }
+    .filter-tab {
+      padding: 0.3rem 0.8rem; /* Smaller padding */
+      font-size: 0.75rem; /* Smaller font size */
+      flex-basis: calc(50% - 0.25rem); /* Allow two tabs per line with 0.5rem gap */
+      text-align: center;
+    }
     footer { padding: 2.5rem 1.5rem; }
     .footer-top { flex-direction: column; }
   }
@@ -1001,15 +1022,15 @@
     </div>
 
     <div class="event-card" data-cat="food" data-city="johannesburg">
-      <img class="card-img" src="images/joburg.jpg" alt="Soweto Food & Music Festival">
-      <div class="card-badge">Next Month</div>
+      <img class="card-img" src="images\event pics\soweto food and music.png" alt="Soweto Kota Festival">
+      <div class="card-badge">5 & 6 September</div>
       <div class="card-body">
         <div class="card-meta"><span>Food & Drink</span><span>Music</span></div>
-        <div class="card-title">Soweto Food & Music Festival</div>
+        <div class="card-title">Soweto Kota Festival</div>
         <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Soweto Theatre, Johannesburg</div>
         <div class="card-footer">
-          <div class="card-price">R250 <small>Early Bird</small></div>
-          <a href="#" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <div class="card-price">N/A <small>Early Bird</small></div>
+          <a href="https://kotafestival.co.za" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
@@ -1023,7 +1044,7 @@
         <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Marks Park, Johannesburg</div>
         <div class="card-footer">
           <div class="card-price">R220 <small>10km Entry</small></div>
-          <a href="#" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="https://kotafestival.co.za" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
@@ -1037,7 +1058,7 @@
         <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> The Market Theatre, Johannesburg</div>
         <div class="card-footer">
           <div class="card-price">R180 <small>Per Show</small></div>
-          <a href="#" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="https://kotafestival.co.za" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
@@ -1079,7 +1100,7 @@
         <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Botanical Gardens, Emmarentia</div>
         <div class="card-footer">
           <div class="card-price">R40 <small>At The Gate</small></div>
-          <a href="#" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="https://kotafestival.co.za" target="_blank" rel="noopener noreferrer" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
@@ -1149,7 +1170,7 @@
         <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> The Playground, Braamfontein</div>
         <div class="card-footer">
           <div class="card-price">R20 <small>Entry Fee</small></div>
-          <a href="#" class="btn-tickets">Details <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="https://kotafestival.co.za" target="_blank" rel="noopener noreferrer" class="btn-tickets">Details <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
     </div>
