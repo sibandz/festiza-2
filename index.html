@@ -283,6 +283,27 @@
 
   .section-title em { font-style: italic; color: var(--gold); }
 
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .section-header .section-title {
+    margin-bottom: 0;
+  }
+  .back-link {
+    color: var(--flame);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .back-link:hover {
+    color: var(--gold);
+  }
   /* Filter Tabs */
   .filter-tabs {
     display: flex;
@@ -496,6 +517,7 @@
     background: rgba(255,255,255,0.02);
     transition: all 0.25s;
     text-align: center;
+    text-decoration: none;
   }
 
   .city-card:hover {
@@ -802,8 +824,10 @@
 <!-- EVENTS SECTION -->
 <section id="events">
   <p class="section-label">🔥 Happening Now</p>
-  <h2 class="section-title">Upcoming <em>Events</em></h2>
-
+  <div class="section-header">
+    <h2 class="section-title">Upcoming <em>Events</em></h2>
+    <a href="#" id="backToAllCities" class="back-link" style="display: none;">&laquo; Back to All Cities</a>
+  </div>
   <!-- Featured Strip -->
   <div class="featured-strip" data-cat="music">
     <div class="featured-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
@@ -832,7 +856,7 @@
   <!-- Events Grid -->
   <div class="events-grid" id="eventsGrid">
 
-    <div class="event-card" data-cat="music">
+    <div class="event-card" data-cat="music" data-city="cape-town">
       <img class="card-img" src="images\rocking the daises pic.png" alt="Rocking the Daisies Festival">
       <div class="card-badge">This Weekend</div>
       <div class="card-body">
@@ -846,7 +870,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="music">
+    <div class="event-card" data-cat="music" data-city="johannesburg">
       <img class="card-img" src="images\cape town jazz festival.jpg" alt="Business Premium Jazz Festival">
       <div class="card-badge">June</div>
       <div class="card-body">
@@ -860,7 +884,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="food">
+    <div class="event-card" data-cat="food" data-city="stellenbosch">
       <img class="card-img" src="images\cape winelands.jpg" alt="Agulhas Wine Triangle Harvest Festival 2026">
       <div class="card-badge">Monthly</div>
       <div class="card-body">
@@ -874,7 +898,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="arts">
+    <div class="event-card" data-cat="arts" data-city="makhanda">
       <img class="card-img" src="images/national arts festival.jpg" alt="National Arts Festival">
       <div class="card-badge">July</div>
       <div class="card-body">
@@ -888,7 +912,7 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="sports">
+    <div class="event-card" data-cat="sports" data-city="port-elizabeth">
       <img class="card-img" src="images/siya kolisi vs wales.jpg" alt="Springboks Home Series">
       <div class="card-badge">From June 20</div>
       <div class="card-body">
@@ -902,7 +926,49 @@
       </div>
     </div>
 
-    <div class="event-card" data-cat="music">
+    <div class="event-card" data-cat="food" data-city="johannesburg">
+      <img class="card-img" src="images/joburg.jpg" alt="Soweto Food & Music Festival">
+      <div class="card-badge">Next Month</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Food & Drink</span><span>Music</span></div>
+        <div class="card-title">Soweto Food & Music Festival</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Soweto Theatre, Johannesburg</div>
+        <div class="card-footer">
+          <div class="card-price">R250 <small>Early Bird</small></div>
+          <a href="#" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="sports" data-city="johannesburg">
+      <img class="card-img" src="images/durban.jpg" alt="Jozi Urban Run">
+      <div class="card-badge">25 May</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Sports</span><span>Running</span></div>
+        <div class="card-title">Jozi Urban Run Adventure</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Marks Park, Johannesburg</div>
+        <div class="card-footer">
+          <div class="card-price">R220 <small>10km Entry</small></div>
+          <a href="#" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="arts" data-city="johannesburg">
+      <img class="card-img" src="images/pretoria.jpg" alt="The Market Theatre Showcase">
+      <div class="card-badge">Weekly</div>
+      <div class="card-body">
+        <div class="card-meta"><span>Arts & Culture</span><span>Theatre</span></div>
+        <div class="card-title">The Market Theatre Showcase</div>
+        <div class="card-location"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> The Market Theatre, Johannesburg</div>
+        <div class="card-footer">
+          <div class="card-price">R180 <small>Per Show</small></div>
+          <a href="#" class="btn-tickets">Tickets <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" style="width: 0.9em; height: 0.9em; vertical-align: -0.1em;"><line x1="5" x2="19" y1="12" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card" data-cat="music" data-city="johannesburg">
       <img class="card-img" src="images\manana mending broken hearts.png" alt="Manana Mending Broken Hearts Tour">
       <div class="card-badge">17 April</div>
       <div class="card-body">
@@ -924,14 +990,14 @@
   <p class="section-label">🗺 Browse by Location</p>
   <h2 class="section-title">Choose your <em>city</em></h2>
   <div class="cities-grid">
-    <div class="city-card"><div class="city-emoji"><img src="images\cape town.jpg" alt="Cape Town skyline" class="city-image-placeholder"></div><div class="city-name">Cape Town</div><div class="city-count">142 events</div></div>
-    <div class="city-card"><div class="city-emoji"><img src="images\joburg.jpg" alt="Johannesburg skyline" class="city-image-placeholder"></div><div class="city-name">Johannesburg</div><div class="city-count">218 events</div></div>
-    <div class="city-card"><div class="city-emoji"><img src="images\pretoria.jpg" alt="Pretoria skyline" class="city-image-placeholder"></div><div class="city-name">Pretoria</div><div class="city-count">89 events</div></div>
-    <div class="city-card"><div class="city-emoji"><img src="images\durban.jpg" alt="Durban beachfront" class="city-image-placeholder"></div><div class="city-name">Durban</div><div class="city-count">107 events</div></div>
-    <div class="city-card"><div class="city-emoji"><img src="images\port elizabeth.jpg" alt="Port Elizabeth harbour" class="city-image-placeholder"></div><div class="city-name">Port Elizabeth</div><div class="city-count">54 events</div></div>
-    <div class="city-card"><div class="city-emoji"><img src="images\bloem.jpg" alt="Bloemfontein city" class="city-image-placeholder"></div><div class="city-name">Bloemfontein</div><div class="city-count">38 events</div></div>
-    <div class="city-card"><div class="city-emoji"><img src="images\knysna.jpg" alt="Knysna lagoon" class="city-image-placeholder"></div><div class="city-name">Knysna</div><div class="city-count">29 events</div></div>
-    <div class="city-card"><div class="city-emoji"><img src="images\stellies.jpg" alt="Stellenbosch vineyards" class="city-image-placeholder"></div><div class="city-name">Stellenbosch</div><div class="city-count">61 events</div></div>
+    <a href="?city=cape-town#events" class="city-card" data-city="cape-town"><div class="city-emoji"><img src="images\cape town.jpg" alt="Cape Town skyline" class="city-image-placeholder"></div><div class="city-name">Cape Town</div><div class="city-count">0 events</div></a>
+    <a href="?city=johannesburg#events" class="city-card" data-city="johannesburg"><div class="city-emoji"><img src="images\joburg.jpg" alt="Johannesburg skyline" class="city-image-placeholder"></div><div class="city-name">Johannesburg</div><div class="city-count">0 events</div></a>
+    <a href="?city=pretoria#events" class="city-card" data-city="pretoria"><div class="city-emoji"><img src="images\pretoria.jpg" alt="Pretoria skyline" class="city-image-placeholder"></div><div class="city-name">Pretoria</div><div class="city-count">0 events</div></a>
+    <a href="?city=durban#events" class="city-card" data-city="durban"><div class="city-emoji"><img src="images\durban.jpg" alt="Durban beachfront" class="city-image-placeholder"></div><div class="city-name">Durban</div><div class="city-count">0 events</div></a>
+    <a href="?city=port-elizabeth#events" class="city-card" data-city="port-elizabeth"><div class="city-emoji"><img src="images\port elizabeth.jpg" alt="Port Elizabeth harbour" class="city-image-placeholder"></div><div class="city-name">Port Elizabeth</div><div class="city-count">0 events</div></a>
+    <a href="?city=bloemfontein#events" class="city-card" data-city="bloemfontein"><div class="city-emoji"><img src="images\bloem.jpg" alt="Bloemfontein city" class="city-image-placeholder"></div><div class="city-name">Bloemfontein</div><div class="city-count">0 events</div></a>
+    <a href="?city=knysna#events" class="city-card" data-city="knysna"><div class="city-emoji"><img src="images\knysna.jpg" alt="Knysna lagoon" class="city-image-placeholder"></div><div class="city-name">Knysna</div><div class="city-count">0 events</div></a>
+    <a href="?city=stellenbosch#events" class="city-card" data-city="stellenbosch"><div class="city-emoji"><img src="images\stellies.jpg" alt="Stellenbosch vineyards" class="city-image-placeholder"></div><div class="city-name">Stellenbosch</div><div class="city-count">0 events</div></a>
   </div>
 
 <!-- APP PROMO -->
@@ -1003,30 +1069,13 @@
 </footer>
 
 <script>
-  function filterEvents(category, clickedButton) {
-    // Update active state on buttons
-    document.querySelectorAll('.filter-tab').forEach(button => button.classList.remove('active'));
-    clickedButton.classList.add('active');
-
-    // Filter the event cards
-    document.querySelectorAll('.event-card').forEach(card => {
-      if (category === 'all' || card.dataset.cat === category) {
-        card.style.display = '';
-        card.style.animation = 'fadeUp 0.4s ease forwards';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  }
-
-  document.querySelectorAll('.filter-tab').forEach(button => button.addEventListener('click', () => filterEvents(button.dataset.cat, button)));
-
   // Intersection Observer for scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.style.opacity = '1';
         e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target); // Stop observing after it's visible
       }
     });
   }, { threshold: 0.12 });
@@ -1035,11 +1084,131 @@
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    if (!el.classList.contains('event-card')) { // Event cards have their own animation
-      observer.observe(el);
-    }
+    observer.observe(el);
   });
 
+  // --- Combined Filtering Logic ---
+
+  const originalEventsTitle = document.querySelector('#events .section-title')?.innerHTML;
+  const eventsGrid = document.getElementById('eventsGrid');
+  const allEventCards = document.querySelectorAll('.event-card');
+  const backToAllLink = document.getElementById('backToAllCities');
+
+  function updateEventView() {
+    const city = new URLSearchParams(window.location.search).get('city');
+    const activeCategoryButton = document.querySelector('.filter-tab.active');
+    const category = activeCategoryButton ? activeCategoryButton.dataset.cat : 'all';
+
+    // Update UI based on whether a city is selected
+    const sectionTitle = document.querySelector('#events .section-title');
+    if (city) {
+        document.querySelector('.featured-strip')?.style.setProperty('display', 'none');
+        backToAllLink?.style.setProperty('display', ''); // Show back link
+        const cityName = city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        if (sectionTitle) {
+            sectionTitle.innerHTML = `Events in <em>${cityName}</em>`;
+        }
+    } else { // No city selected, reset to default view
+        document.querySelector('.featured-strip')?.style.setProperty('display', '');
+        backToAllLink?.style.setProperty('display', 'none'); // Hide back link
+        if (originalEventsTitle && sectionTitle) {
+            sectionTitle.innerHTML = originalEventsTitle;
+        }
+    }
+
+    // Filter cards
+    let eventCount = 0;
+    allEventCards.forEach(card => {
+        const isCityMatch = !city || card.dataset.city === city;
+        const isCategoryMatch = category === 'all' || card.dataset.cat === category;
+
+        if (isCityMatch && isCategoryMatch) {
+            card.style.display = '';
+            eventCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Handle "no events" message
+    eventsGrid?.querySelector('.no-events-message')?.remove();
+    if (eventCount === 0 && eventsGrid) {
+        const cityText = city ? ` in ${city.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}` : '';
+        const categoryText = category !== 'all' ? ` for this category` : '';
+        eventsGrid.insertAdjacentHTML('beforeend', `<p class="no-events-message" style="color: var(--ash); text-align: center; grid-column: 1 / -1;">No events found${categoryText}${cityText}.</p>`);
+    }
+  }
+
+  // --- Event Listeners ---
+  
+  // Category filter clicks
+  document.querySelectorAll('.filter-tab').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelector('.filter-tab.active')?.classList.remove('active');
+        button.classList.add('active');
+        updateEventView();
+    });
+  });
+  
+  // City card clicks
+  document.querySelectorAll('a.city-card[href*="?city="]').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const url = new URL(link.href);
+        history.pushState({ city: url.searchParams.get('city') }, '', url.href);
+        
+        // Reset category filter to 'All' when changing city
+        document.querySelector('.filter-tab.active')?.classList.remove('active');
+        document.querySelector('.filter-tab[data-cat="all"]')?.classList.add('active');
+
+        updateEventView();
+        document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // "Back to All Cities" link click
+  backToAllLink?.addEventListener('click', e => {
+      e.preventDefault();
+      history.pushState({}, '', window.location.pathname + '#events');
+      
+      // Reset category filter to 'All'
+      document.querySelector('.filter-tab.active')?.classList.remove('active');
+      document.querySelector('.filter-tab[data-cat="all"]')?.classList.add('active');
+
+      updateEventView();
+  });
+
+  // Browser back/forward navigation
+  window.addEventListener('popstate', () => {
+    const city = new URLSearchParams(window.location.search).get('city');
+    if (!city) {
+        // If we are returning to the main page, reset the category filter
+        document.querySelector('.filter-tab.active')?.classList.remove('active');
+        document.querySelector('.filter-tab[data-cat="all"]')?.classList.add('active');
+    }
+    updateEventView();
+  });
+
+  // Calculate and display event counts for each city
+  function calculateCityCounts() {
+    const cityCards = document.querySelectorAll('.city-card[data-city]');
+
+    cityCards.forEach(cityCard => {
+        const city = cityCard.dataset.city;
+        if (!city) return;
+
+        const count = Array.from(allEventCards).filter(event => event.dataset.city === city).length;
+
+        const countElement = cityCard.querySelector('.city-count');
+        if (countElement) {
+            countElement.textContent = `${count} event${count !== 1 ? 's' : ''}`;
+        }
+    });
+  }
+
+  // Initial page load
+  calculateCityCounts();
+  updateEventView();
 </script>
 </body>
 </html>
